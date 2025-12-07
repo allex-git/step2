@@ -88,7 +88,7 @@ npm test
 3. Створити **SSH agent node**
 4. Створити **DockerHub credentials**:
    - ID: <ваш id_dockerhub>
-   - Username: <ваш логин>
+   - Username: <ваш логін>
    - Password: <ваш пароль>
 5. Створити *Pipeline Job*
 
