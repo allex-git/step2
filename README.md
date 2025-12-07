@@ -19,6 +19,7 @@ step2/
  ┣ package.json
  ┣ app.test.js
  ┣ Dockerfile
+ ┣ Jenkinsfile
  ┣ Vagrantfile
  ┣ README.md
  ┗ .vagrant/
@@ -158,7 +159,7 @@ pipeline {
 
 Після успішного завершення pipeline образ буде доступний за шляхом:
 
-*https://hub.docker.com/r/alexdevops05/step2*
+*https://hub.docker.com/r/alexdevops05/step2/tags*
 
 ---
 
