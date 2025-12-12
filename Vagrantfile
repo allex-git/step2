@@ -1,10 +1,6 @@
 Vagrant.configure("2") do |config|
-#  config.vm.provider "virtualbox" do |vb|
-#    vb.check_guest_additions = false
-#    vb.functional_vboxsf = false
-#  end
 
-# MASTER 
+# master (server) 
   config.vm.define "jenkins-master" do |master|
     master.vm.box = "bento/ubuntu-22.04"
     master.vm.hostname = "jenkins-master"
@@ -23,20 +19,17 @@ Vagrant.configure("2") do |config|
   systemctl start docker
 
   if [ "$(docker ps -aq -f name=jenkins)" ]; then
-      echo "Jenkins container already exists. Starting..."
+      echo "container Jenkins exists, starting"
       docker start jenkins
   else
-      echo "Creating Jenkins container..."
-      docker run -d --name jenkins \
-        -p 8080:8080 -p 50000:50000 \
-        -v jenkins_home:/var/jenkins_home \
-        --restart=always \
-        jenkins/jenkins:lts
+      echo "creating Jenkins container"
+      docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home \
+        --restart=always jenkins/jenkins:lts
   fi
 SHELL
   end
 
-# WORKER
+# worker (agent)
   config.vm.define "jenkins-worker" do |worker|
     worker.vm.box = "bento/ubuntu-22.04"
     worker.vm.hostname = "jenkins-worker"
@@ -59,5 +52,4 @@ SHELL
       usermod -aG docker jenkins
     SHELL
   end
-
 end
